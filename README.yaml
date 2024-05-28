@@ -1,22 +1,5 @@
-#         DELETE ME
-#
-# The above is the README configuration for the Example module itself.
-# Delete from here to the top of file and fill in the template below
-########################################################################################################################
-########################################################################################################################
-########################################################################################################################
-
-
-#
-# This is the canonical configuration for the `README.md`
-# Run `make readme` to rebuild the `README.md`
-#
-
 # Name of this project
-name: terraform-example-module
-
-# Logo for this project
-#logo: docs/logo.png
+name: terraform-aws-managed-prometheus
 
 # License of this project
 license: "APACHE2"
@@ -28,7 +11,7 @@ copyrights:
     year: "2021"
 
 # Canonical GitHub repo
-github_repo: cloudposse/terraform-example-module
+github_repo: cloudposse/terraform-aws-managed-prometheus
 
 # Badges to display
 badges:
@@ -68,12 +51,13 @@ references:
 
 # Short description of this project
 description: |-
-  Short
-  description
+  This module is responsible for provisioning a workspace for Amazon Managed Service for Prometheus, also known as Amazon Managed Prometheus (AMP).
 
 # Introduction to the project
 introduction: |-
-  This is an introduction.
+  Amazon Managed Service for Prometheus provides highly available, secure, and managed monitoring for your containers. It automatically scales as your ingestion and query needs grow, and gives you access to remote write metrics from existing Prometheus servers and to query metrics using PromQL.
+
+  Deploy this module alongside a managed collector to read metrics from EKS and visualize them with Grafana. For example, see [terraform-aws-managed-grafana](https://github.com/cloudposse/terraform-aws-managed-grafana).
 
 # How to use this module. Should be an easy example to copy and paste.
 usage: |-
@@ -107,7 +91,7 @@ usage: |-
 # Example usage
 examples: |-
   Here is an example of using this module:
-  - [`examples/complete`](https://github.com/cloudposse/terraform-example-module/) - complete example of using this module
+  - [`examples/complete`](https://github.com/cloudposse/terraform-aws-managed-prometheus/) - complete example of using this module
 
 # How to get started quickly
 quickstart: |-
@@ -117,6 +101,3 @@ quickstart: |-
 include:
   - "docs/targets.md"
   - "docs/terraform.md"
-
-# Contributors to this project
-contributors: []

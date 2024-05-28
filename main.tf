@@ -1,15 +1,31 @@
-resource "random_integer" "example" {
-  count = module.this.enabled ? 1 : 0
+locals {
+  enabled = module.this.enabled
 
-  min = 1
-  max = 50000
-  keepers = {
-    example = var.example
-  }
+  workspace_tags = var.scraper_deployed ? merge(module.this.tags, {
+    "AMPAgentlessScraper" = ""
+  }) : module.this.tags
 }
 
+resource "aws_prometheus_alert_manager_definition" "this" {
+  count = local.enabled && length(var.alert_manager_definition) > 0 ? 1 : 0
 
+  workspace_id = aws_prometheus_workspace.this[0].id
+  definition   = var.alert_manager_definition
+}
 
-locals {
-  example = format("%v %v", var.example, join("", random_integer.example[*].result))
+resource "aws_prometheus_rule_group_namespace" "this" {
+  for_each = local.enabled ? toset(var.rule_group_namespaces) : []
+
+  name = each.value.name
+  data = each.value.data
+
+  workspace_id = aws_prometheus_workspace.this[0].id
+}
+
+resource "aws_prometheus_workspace" "this" {
+  count = local.enabled ? 1 : 0
+
+  alias = module.this.id
+
+  tags = local.workspace_tags
 }
