@@ -4,25 +4,30 @@ locals {
 
 data "aws_region" "current" {}
 
-data "aws_iam_policy_document" "vpc_endpoint_access" {
-  count = local.vpc_endpoint_enabled ? 1 : 0
+module "vpc_endpoint_policy" {
+  source  = "cloudposse/iam-policy/aws"
+  version = "v2.0.1"
 
-  statement {
-    actions   = ["aps:*"]
-    effect    = "Allow"
-    resources = ["*"]
+  enabled = local.vpc_endpoint_enabled
 
-    principals {
-      type        = "AWS"
-      identifiers = ["*"]
-    }
+  iam_policy = [{
+    statements = [
+      {
+        effect    = "Allow"
+        actions   = ["aps:*"]
+        resources = ["*"]
+        conditions = [
+          {
+            test     = "StringEquals"
+            variable = "aws:SourceVpc"
+            values   = [var.vpc_id]
+          }
+        ]
+      }
+    ]
+  }]
 
-    condition {
-      test     = "StringEquals"
-      variable = "aws:SourceVpc"
-      values   = [var.vpc_id]
-    }
-  }
+  context = module.this.context
 }
 
 resource "aws_vpc_endpoint" "prometheus" {
@@ -32,7 +37,7 @@ resource "aws_vpc_endpoint" "prometheus" {
   service_name      = format("com.amazonaws.%s.aps-workspaces", data.aws_region.current.name)
   vpc_endpoint_type = "Interface"
 
-  policy = data.aws_iam_policy_document.vpc_endpoint_access[0].json
+  policy = module.vpc_endpoint_policy.json
 
   tags = module.this.tags
 }
