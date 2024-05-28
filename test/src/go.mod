@@ -1,4 +1,4 @@
-module github.com/cloudposse/terraform-example-module
+module github.com/cloudposse/terraform-aws-managed-prometheus
 
 go 1.19
 
