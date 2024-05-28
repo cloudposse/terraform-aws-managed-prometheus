@@ -1,3 +1,5 @@
+region = "us-east-2"
+
 namespace = "eg"
 
 environment = "ue2"
