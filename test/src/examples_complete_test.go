@@ -5,10 +5,12 @@ import (
   "strings"
   "testing"
 
+  "github.com/gruntwork-io/terratest/modules/aws"
   "github.com/gruntwork-io/terratest/modules/random"
   "github.com/gruntwork-io/terratest/modules/terraform"
   testStructure "github.com/gruntwork-io/terratest/modules/test-structure"
   "github.com/stretchr/testify/assert"
+
 )
 
 func cleanup(t *testing.T, terraformOptions *terraform.Options, tempTestFolder string) {
@@ -51,9 +53,11 @@ func TestExamplesComplete(t *testing.T) {
   // TODO endpoint := terraform.Output(t, terraformOptions, "workspace_endpoint")
   // TODO accessRole := terraform.Output(t, terraformOptions, "access_role_arn")
 
+  accountId := aws.GetAccountId(t)
+
   // Verify we're getting back the outputs we expect
   //assert.Equal(t, "ws-a2d110da-85a5-44b8-9f5f-0727bdac7c82", workspaceArn)
-  assert.Equal(t, "arn:aws:aps:us-east-2:126450723953:workspace/"+workspaceId, workspaceArn)
+  assert.Equal(t, "arn:aws:aps:us-east-2:" + accountId + ":workspace/" + workspaceId, workspaceArn)
 }
 
 func TestExamplesCompleteDisabled(t *testing.T) {
