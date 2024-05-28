@@ -16,6 +16,12 @@ module "vpc_endpoint_policy" {
         effect    = "Allow"
         actions   = ["aps:*"]
         resources = ["*"]
+        principals = [
+          {
+            type        = "AWS"
+            identifiers = ["*"]
+          }
+        ]
         conditions = [
           {
             test     = "StringEquals"
