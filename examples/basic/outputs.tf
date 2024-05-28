@@ -1,14 +1,15 @@
-output "id" {
-  description = "ID of the created example"
-  value       = module.example.id
+output "workspace_arn" {
+  description = "The ARN of this Amazon Managed Prometheus workspace"
+  value       = module.managed_prometheus.workspace_arn
 }
 
-output "example" {
-  description = "Output \"example\" from example module"
-  value       = module.example.example
+output "workspace_id" {
+  description = "The ID of this Amazon Managed Prometheus workspace"
+  value       = module.managed_prometheus.workspace_id
 }
 
-output "random" {
-  description = "Output \"random\" from example module"
-  value       = module.example.random
+output "access_role_arn" {
+  description = "If enabled with `var.allowed_account_id`, the Role ARN used for accessing Amazon Managed Prometheus in this account"
+  value       = module.managed_prometheus.access_role_arn
 }
+

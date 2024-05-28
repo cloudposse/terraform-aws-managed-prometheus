@@ -18,14 +18,14 @@ func cleanup(t *testing.T, terraformOptions *terraform.Options, tempTestFolder s
   os.RemoveAll(tempTestFolder)
 }
 
-// Test the Terraform module in examples/complete using Terratest.
-func TestExamplesComplete(t *testing.T) {
+// Test the Terraform module in examples/basic using Terratest.
+func TestExamplesBasic(t *testing.T) {
   t.Parallel()
   randID := strings.ToLower(random.UniqueId())
   attributes := []string{randID}
 
   rootFolder := "../../"
-  terraformFolderRelativeToRoot := "examples/complete"
+  terraformFolderRelativeToRoot := "examples/basic"
   varFiles := []string{"fixtures.us-east-2.tfvars"}
 
   tempTestFolder := testStructure.CopyTerraformFolderToTemp(t, rootFolder, terraformFolderRelativeToRoot)
@@ -56,21 +56,19 @@ func TestExamplesComplete(t *testing.T) {
   accountId := aws.GetAccountId(t)
 
   // Verify we're getting back the outputs we expect
-  //assert.Equal(t, "ws-a2d110da-85a5-44b8-9f5f-0727bdac7c82", workspaceArn)
   assert.Equal(t, "arn:aws:aps:us-east-2:" + accountId + ":workspace/" + workspaceId, workspaceArn)
 
-  // Check the access role was created
+  // access role should NOT be created
   assert.Equal(t, "", accessRoleArn)
-  assert.Equal(t, "arn:aws:iam::" + accountId + ":role/eg-ue2-test-example-access", accessRoleArn)
 }
 
-func TestExamplesCompleteDisabled(t *testing.T) {
+func TestExamplesBasicDisabled(t *testing.T) {
   t.Parallel()
   randID := strings.ToLower(random.UniqueId())
   attributes := []string{randID}
 
   rootFolder := "../../"
-  terraformFolderRelativeToRoot := "examples/complete"
+  terraformFolderRelativeToRoot := "examples/basic"
   varFiles := []string{"fixtures.us-east-2.tfvars"}
 
   tempTestFolder := testStructure.CopyTerraformFolderToTemp(t, rootFolder, terraformFolderRelativeToRoot)

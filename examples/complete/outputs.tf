@@ -8,3 +8,8 @@ output "workspace_id" {
   value       = module.managed_prometheus.workspace_id
 }
 
+output "access_role_arn" {
+  description = "If enabled with `var.allowed_account_id`, the Role ARN used for accessing Amazon Managed Prometheus in this account"
+  value       = module.managed_prometheus.access_role_arn
+}
+
