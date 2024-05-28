@@ -45,15 +45,15 @@ func TestExamplesComplete(t *testing.T) {
   // This will run `terraform init` and `terraform apply` and fail the test if there are any errors
   terraform.InitAndApply(t, terraformOptions)
 
-  // expectedExampleInput := "Hello, world!"
-
   // Run `terraform output` to get the value of an output variable
   workspaceId := terraform.Output(t, terraformOptions, "workspace_id")
+  workspaceArn := terraform.Output(t, terraformOptions, "workspace_arn")
   // TODO endpoint := terraform.Output(t, terraformOptions, "workspace_endpoint")
   // TODO accessRole := terraform.Output(t, terraformOptions, "access_role_arn")
 
   // Verify we're getting back the outputs we expect
-  assert.Equal(t, "eg-ue2-test-example-"+randID, workspaceId)
+  //assert.Equal(t, "ws-a2d110da-85a5-44b8-9f5f-0727bdac7c82", workspaceArn)
+  assert.Equal(t, "arn:aws:aps:us-east-2:126450723953:workspace/"+workspaceId, workspaceArn)
 }
 
 func TestExamplesCompleteDisabled(t *testing.T) {

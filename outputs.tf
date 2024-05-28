@@ -1,16 +1,16 @@
 output "workspace_id" {
   description = "The ID of this Amazon Managed Prometheus workspace"
-  value       = aws_prometheus_workspace.this[0].id
+  value       = local.enabled ? aws_prometheus_workspace.this[0].id : ""
 }
 
 output "workspace_arn" {
   description = "The ARN of this Amazon Managed Prometheus workspace"
-  value       = aws_prometheus_workspace.this[0].arn
+  value       = local.enabled ? aws_prometheus_workspace.this[0].arn : ""
 }
 
 output "workspace_endpoint" {
   description = "The endpoint URL of this Amazon Managed Prometheus workspace"
-  value       = aws_prometheus_workspace.this[0].prometheus_endpoint
+  value       = local.enabled ? aws_prometheus_workspace.this[0].prometheus_endpoint : ""
 }
 
 output "access_role_arn" {

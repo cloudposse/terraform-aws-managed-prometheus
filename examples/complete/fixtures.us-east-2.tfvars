@@ -8,6 +8,4 @@ stage = "test"
 
 name = "example"
 
-grafana_account_id = "123456789012"
-
-vpc_id = "vpc-00000000000000000"
+vpc_cidr_block = "172.16.0.0/16"
