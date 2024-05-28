@@ -48,9 +48,9 @@ func TestExamplesComplete(t *testing.T) {
   expectedExampleInput := "Hello, world!"
 
   // Run `terraform output` to get the value of an output variable
-  id := terraform.Output(t, terraformOptions, "id")
-  example := terraform.Output(t, terraformOptions, "example")
-  random := terraform.Output(t, terraformOptions, "random")
+  id := terraform.Output(t, terraformOptions, "workspace_id")
+  endpoint := terraform.Output(t, terraformOptions, "workspace_endpoint")
+  accessRole := terraform.Output(t, terraformOptions, "access_role_arn")
 
   // Verify we're getting back the outputs we expect
   // Ensure we get a random number appended

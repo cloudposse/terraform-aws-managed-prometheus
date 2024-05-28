@@ -1,7 +1,14 @@
-module "example" {
+locals {
+  grafana_account_id = "1234567890"
+}
+
+module "managed_prometheus" {
   source = "../.."
 
-  example = coalesce(var.example_input_override, var.example_input)
+  allowed_account_id       = local.grafana_account_id
+  scraper_deployed         = true
+  vpc_id = var.vpc_id
 
   context = module.this.context
 }
+

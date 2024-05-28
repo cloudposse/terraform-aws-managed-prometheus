@@ -2,13 +2,8 @@ variable "region" {
   type = string
 }
 
-variable "example_input" {
-  type        = string
-  description = "The value which will be passed to the example module"
-}
-
-variable "example_input_override" {
-  type        = string
-  default     = null
-  description = "Override for `example_input`"
+variable "vpc_id" {
+  type = string
+  description = "If set, the ID of the VPC in which the endpoint will be used. If not set, no VPC endpoint will be created."
+  default = ""
 }
