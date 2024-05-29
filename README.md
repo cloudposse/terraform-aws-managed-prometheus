@@ -59,6 +59,11 @@ For automated tests of the complete example using [bats](https://github.com/bats
 (which tests and deploys the example on AWS), see [test](test).
 
 ```hcl
+locals {
+  enabled = module.this.enabled
+  grafana_account_id = "123456789012"
+}
+
 # Create a standard label resource. See [null-label](https://github.com/cloudposse/terraform-null-label/#terraform-null-label--)
 module "label" {
   source  = "cloudposse/label/null"
@@ -69,12 +74,15 @@ module "label" {
   name      = "example"
 }
 
-module "example" {
-  source  = "cloudposse/*****/aws"
+module "prometheus" {
+  source  = "cloudposse/terraform-aws-managed-prometheus/aws"
   # Cloud Posse recommends pinning every module to a specific version
   # version = "x.x.x"
 
-  example = "Hello world!"
+  allowed_account_id       = local.grafana_account_id # The ID of another account allowed to access this Managed Prometheus Workspace
+  scraper_deployed         = true
+
+  vpc_id = var.vpc_id # The ID of some VPC allowed to access this Managed Prometheus Workspace
 
   context = module.label.this
 }
@@ -89,9 +97,7 @@ module "example" {
 
 
 
-## Quick Start
 
-Here's how to get started...
 ## Examples
 
 Here is an example of using this module:
@@ -132,6 +138,7 @@ Available targets:
 |------|--------|---------|
 | <a name="module_access_role"></a> [access\_role](#module\_access\_role) | cloudposse/label/null | 0.25.0 |
 | <a name="module_this"></a> [this](#module\_this) | cloudposse/label/null | 0.25.0 |
+| <a name="module_vpc_endpoint_policy"></a> [vpc\_endpoint\_policy](#module\_vpc\_endpoint\_policy) | cloudposse/iam-policy/aws | v2.0.1 |
 
 ## Resources
 
@@ -143,7 +150,6 @@ Available targets:
 | [aws_prometheus_workspace.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/prometheus_workspace) | resource |
 | [aws_vpc_endpoint.prometheus](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint) | resource |
 | [aws_iam_policy_document.aps](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.vpc_endpoint_access](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 
 ## Inputs

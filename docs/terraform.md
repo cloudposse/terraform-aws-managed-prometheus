@@ -18,6 +18,7 @@
 |------|--------|---------|
 | <a name="module_access_role"></a> [access\_role](#module\_access\_role) | cloudposse/label/null | 0.25.0 |
 | <a name="module_this"></a> [this](#module\_this) | cloudposse/label/null | 0.25.0 |
+| <a name="module_vpc_endpoint_policy"></a> [vpc\_endpoint\_policy](#module\_vpc\_endpoint\_policy) | cloudposse/iam-policy/aws | v2.0.1 |
 
 ## Resources
 
@@ -29,7 +30,6 @@
 | [aws_prometheus_workspace.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/prometheus_workspace) | resource |
 | [aws_vpc_endpoint.prometheus](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint) | resource |
 | [aws_iam_policy_document.aps](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.vpc_endpoint_access](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 
 ## Inputs

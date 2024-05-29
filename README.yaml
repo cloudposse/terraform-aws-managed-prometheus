@@ -67,6 +67,11 @@ usage: |-
   (which tests and deploys the example on AWS), see [test](test).
 
   ```hcl
+  locals {
+    enabled = module.this.enabled
+    grafana_account_id = "123456789012"
+  }
+
   # Create a standard label resource. See [null-label](https://github.com/cloudposse/terraform-null-label/#terraform-null-label--)
   module "label" {
     source  = "cloudposse/label/null"
@@ -77,12 +82,15 @@ usage: |-
     name      = "example"
   }
 
-  module "example" {
-    source  = "cloudposse/*****/aws"
+  module "prometheus" {
+    source  = "cloudposse/terraform-aws-managed-prometheus/aws"
     # Cloud Posse recommends pinning every module to a specific version
     # version = "x.x.x"
 
-    example = "Hello world!"
+    allowed_account_id       = local.grafana_account_id # The ID of another account allowed to access this Managed Prometheus Workspace
+    scraper_deployed         = true
+
+    vpc_id = var.vpc_id # The ID of some VPC allowed to access this Managed Prometheus Workspace
 
     context = module.label.this
   }
@@ -92,10 +100,6 @@ usage: |-
 examples: |-
   Here is an example of using this module:
   - [`examples/complete`](https://github.com/cloudposse/terraform-aws-managed-prometheus/) - complete example of using this module
-
-# How to get started quickly
-quickstart: |-
-  Here's how to get started...
 
 # Other files to include in this README from the project folder
 include:
