@@ -60,7 +60,6 @@ For automated tests of the complete example using [bats](https://github.com/bats
 
 ```hcl
 locals {
-  enabled = module.this.enabled
   grafana_account_id = "123456789012"
 }
 
