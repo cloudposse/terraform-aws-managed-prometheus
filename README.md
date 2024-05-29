@@ -75,7 +75,7 @@ module "label" {
 }
 
 module "prometheus" {
-  source  = "cloudposse/terraform-aws-managed-prometheus/aws"
+  source  = "cloudposse/managed-prometheus/aws"
   # Cloud Posse recommends pinning every module to a specific version
   # version = "x.x.x"
 

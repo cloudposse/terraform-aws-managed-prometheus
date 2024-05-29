@@ -60,7 +60,7 @@ func TestExamplesComplete(t *testing.T) {
   assert.Equal(t, "arn:aws:aps:us-east-2:" + accountId + ":workspace/" + workspaceId, workspaceArn)
 
   // Check the access role was created
-  assert.Equal(t, "arn:aws:iam::" + accountId + ":role/eg-ue2-test-example-" + randID + "access", accessRoleArn)
+  assert.Equal(t, "arn:aws:iam::" + accountId + ":role/eg-ue2-test-example-" + randID + "-access", accessRoleArn)
 }
 
 func TestExamplesCompleteDisabled(t *testing.T) {
