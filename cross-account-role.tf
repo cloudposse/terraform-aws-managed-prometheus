@@ -31,7 +31,7 @@ resource "aws_iam_role" "account_access" {
   })
 
   inline_policy {
-    name   = module.prometheus_policy_label.id
+    name   = module.account_access_policy_label.id
     policy = data.aws_iam_policy_document.aps[0].json
   }
 }
@@ -54,7 +54,7 @@ data "aws_iam_policy_document" "aps" {
   }
 }
 
-module "prometheus_policy_label" {
+module "account_access_policy_label" {
   source  = "cloudposse/label/null"
   version = "0.25.0"
 

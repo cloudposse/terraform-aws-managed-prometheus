@@ -136,7 +136,7 @@ Available targets:
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_access_role"></a> [access\_role](#module\_access\_role) | cloudposse/label/null | 0.25.0 |
-| <a name="module_prometheus_policy_label"></a> [prometheus\_policy\_label](#module\_prometheus\_policy\_label) | cloudposse/label/null | 0.25.0 |
+| <a name="module_account_access_policy_label"></a> [account\_access\_policy\_label](#module\_account\_access\_policy\_label) | cloudposse/label/null | 0.25.0 |
 | <a name="module_this"></a> [this](#module\_this) | cloudposse/label/null | 0.25.0 |
 | <a name="module_vpc_endpoint_policy"></a> [vpc\_endpoint\_policy](#module\_vpc\_endpoint\_policy) | cloudposse/iam-policy/aws | v2.0.1 |
 
