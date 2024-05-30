@@ -58,7 +58,7 @@ module "account_access_policy_label" {
   source  = "cloudposse/label/null"
   version = "0.25.0"
 
-  enabled = local.prometheus_policy_enabled
+  enabled = local.access_role_enabled
 
   attributes = ["aps"]
 
