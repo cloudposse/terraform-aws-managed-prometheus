@@ -1,22 +1,5 @@
-#         DELETE ME
-#
-# The above is the README configuration for the Example module itself.
-# Delete from here to the top of file and fill in the template below
-########################################################################################################################
-########################################################################################################################
-########################################################################################################################
-
-
-#
-# This is the canonical configuration for the `README.md`
-# Run `make readme` to rebuild the `README.md`
-#
-
 # Name of this project
-name: terraform-example-module
-
-# Logo for this project
-#logo: docs/logo.png
+name: terraform-aws-managed-prometheus
 
 # License of this project
 license: "APACHE2"
@@ -28,7 +11,7 @@ copyrights:
     year: "2021"
 
 # Canonical GitHub repo
-github_repo: cloudposse/terraform-example-module
+github_repo: cloudposse/terraform-aws-managed-prometheus
 
 # Badges to display
 badges:
@@ -68,12 +51,13 @@ references:
 
 # Short description of this project
 description: |-
-  Short
-  description
+  This module is responsible for provisioning a workspace for Amazon Managed Service for Prometheus, also known as Amazon Managed Prometheus (AMP).
 
 # Introduction to the project
 introduction: |-
-  This is an introduction.
+  Amazon Managed Service for Prometheus provides highly available, secure, and managed monitoring for your containers. It automatically scales as your ingestion and query needs grow, and gives you access to remote write metrics from existing Prometheus servers and to query metrics using PromQL.
+
+  Deploy this module alongside a managed collector to read metrics from EKS and visualize them with Grafana. For example, see [terraform-aws-managed-grafana](https://github.com/cloudposse/terraform-aws-managed-grafana).
 
 # How to use this module. Should be an easy example to copy and paste.
 usage: |-
@@ -83,6 +67,10 @@ usage: |-
   (which tests and deploys the example on AWS), see [test](test).
 
   ```hcl
+  locals {
+    grafana_account_id = "123456789012"
+  }
+
   # Create a standard label resource. See [null-label](https://github.com/cloudposse/terraform-null-label/#terraform-null-label--)
   module "label" {
     source  = "cloudposse/label/null"
@@ -93,12 +81,15 @@ usage: |-
     name      = "example"
   }
 
-  module "example" {
-    source  = "cloudposse/*****/aws"
+  module "prometheus" {
+    source  = "cloudposse/managed-prometheus/aws"
     # Cloud Posse recommends pinning every module to a specific version
     # version = "x.x.x"
 
-    example = "Hello world!"
+    allowed_account_id       = local.grafana_account_id # The ID of another account allowed to access this Managed Prometheus Workspace
+    scraper_deployed         = true
+
+    vpc_id = var.vpc_id # The ID of some VPC allowed to access this Managed Prometheus Workspace
 
     context = module.label.this
   }
@@ -107,16 +98,9 @@ usage: |-
 # Example usage
 examples: |-
   Here is an example of using this module:
-  - [`examples/complete`](https://github.com/cloudposse/terraform-example-module/) - complete example of using this module
-
-# How to get started quickly
-quickstart: |-
-  Here's how to get started...
+  - [`examples/complete`](https://github.com/cloudposse/terraform-aws-managed-prometheus/) - complete example of using this module
 
 # Other files to include in this README from the project folder
 include:
   - "docs/targets.md"
   - "docs/terraform.md"
-
-# Contributors to this project
-contributors: []
