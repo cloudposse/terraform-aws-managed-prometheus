@@ -3,7 +3,7 @@
 <!-- markdownlint-disable -->
 <a href="https://cpco.io/homepage"><img src="https://github.com/cloudposse/terraform-aws-managed-prometheus/blob/main/.github/banner.png?raw=true" alt="Project Banner"/></a><br/>
     <p align="right">
-<a href="https://github.com/None/commits"><img src="https://img.shields.io/github/last-commit/None.svg?style=for-the-badge" alt="Last Updated"/></a><a href="https://github.com/None/releases/latest"><img src="https://img.shields.io/github/release/None.svg?style=for-the-badge" alt="Latest Release"/></a><a href="https://github.com/None/commits"><img src="https://img.shields.io/github/last-commit/None.svg?style=for-the-badge" alt="Last Updated"/></a><a href="https://slack.cloudposse.com"><img src="https://slack.cloudposse.com/for-the-badge.svg" alt="Slack Community"/></a></p>
+<a href="https://github.com/cloudposse/terraform-aws-managed-prometheus/commits"><img src="https://img.shields.io/github/last-commit/cloudposse/terraform-aws-managed-prometheus.svg?style=for-the-badge" alt="Last Updated"/></a><a href="https://github.com/cloudposse/terraform-aws-managed-prometheus/releases/latest"><img src="https://img.shields.io/github/release/cloudposse/terraform-aws-managed-prometheus.svg?style=for-the-badge" alt="Latest Release"/></a><a href="https://github.com/cloudposse/terraform-aws-managed-prometheus/commits"><img src="https://img.shields.io/github/last-commit/cloudposse/terraform-aws-managed-prometheus.svg?style=for-the-badge" alt="Last Updated"/></a><a href="https://slack.cloudposse.com"><img src="https://slack.cloudposse.com/for-the-badge.svg" alt="Slack Community"/></a></p>
 <!-- markdownlint-restore -->
 
 <!--
@@ -253,6 +253,12 @@ For additional context, refer to some of these links.
 This project is under active development, and we encourage contributions from our community.
 
 
+
+Many thanks to our outstanding contributors:
+
+<a href="https://github.com/cloudposse/terraform-aws-managed-prometheus/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=cloudposse/terraform-aws-managed-prometheus&max=24" />
+</a>
 
 For 🐛 bug reports & feature requests, please use the [issue tracker](https://github.com/cloudposse/terraform-aws-managed-prometheus/issues).
 
