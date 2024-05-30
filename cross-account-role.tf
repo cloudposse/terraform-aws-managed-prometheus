@@ -31,7 +31,7 @@ resource "aws_iam_role" "account_access" {
   })
 
   inline_policy {
-    name   = "${module.this.id}-aps"
+    name   = module.account_access_policy_label.id
     policy = data.aws_iam_policy_document.aps[0].json
   }
 }
@@ -52,4 +52,15 @@ data "aws_iam_policy_document" "aps" {
     ]
     resources = ["*"]
   }
+}
+
+module "account_access_policy_label" {
+  source  = "cloudposse/label/null"
+  version = "0.25.0"
+
+  enabled = local.access_role_enabled
+
+  attributes = ["aps"]
+
+  context = module.this.context
 }
