@@ -3,7 +3,7 @@
 <!-- markdownlint-disable -->
 <a href="https://cpco.io/homepage"><img src="https://github.com/cloudposse/terraform-aws-managed-prometheus/blob/main/.github/banner.png?raw=true" alt="Project Banner"/></a><br/>
     <p align="right">
-<a href="https://github.com/None/commits"><img src="https://img.shields.io/github/last-commit/None.svg?style=for-the-badge" alt="Last Updated"/></a><a href="https://github.com/None/releases/latest"><img src="https://img.shields.io/github/release/None.svg?style=for-the-badge" alt="Latest Release"/></a><a href="https://github.com/None/commits"><img src="https://img.shields.io/github/last-commit/None.svg?style=for-the-badge" alt="Last Updated"/></a><a href="https://slack.cloudposse.com"><img src="https://slack.cloudposse.com/for-the-badge.svg" alt="Slack Community"/></a></p>
+<a href="https://github.com/cloudposse/terraform-aws-managed-prometheus/commits"><img src="https://img.shields.io/github/last-commit/cloudposse/terraform-aws-managed-prometheus.svg?style=for-the-badge" alt="Last Updated"/></a><a href="https://github.com/cloudposse/terraform-aws-managed-prometheus/releases/latest"><img src="https://img.shields.io/github/release/cloudposse/terraform-aws-managed-prometheus.svg?style=for-the-badge" alt="Latest Release"/></a><a href="https://github.com/cloudposse/terraform-aws-managed-prometheus/commits"><img src="https://img.shields.io/github/last-commit/cloudposse/terraform-aws-managed-prometheus.svg?style=for-the-badge" alt="Last Updated"/></a><a href="https://slack.cloudposse.com"><img src="https://slack.cloudposse.com/for-the-badge.svg" alt="Slack Community"/></a></p>
 <!-- markdownlint-restore -->
 
 <!--
@@ -136,6 +136,7 @@ Available targets:
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_access_role"></a> [access\_role](#module\_access\_role) | cloudposse/label/null | 0.25.0 |
+| <a name="module_account_access_policy_label"></a> [account\_access\_policy\_label](#module\_account\_access\_policy\_label) | cloudposse/label/null | 0.25.0 |
 | <a name="module_this"></a> [this](#module\_this) | cloudposse/label/null | 0.25.0 |
 | <a name="module_vpc_endpoint_policy"></a> [vpc\_endpoint\_policy](#module\_vpc\_endpoint\_policy) | cloudposse/iam-policy/aws | v2.0.1 |
 
@@ -253,6 +254,12 @@ For additional context, refer to some of these links.
 This project is under active development, and we encourage contributions from our community.
 
 
+
+Many thanks to our outstanding contributors:
+
+<a href="https://github.com/cloudposse/terraform-aws-managed-prometheus/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=cloudposse/terraform-aws-managed-prometheus&max=24" />
+</a>
 
 For 🐛 bug reports & feature requests, please use the [issue tracker](https://github.com/cloudposse/terraform-aws-managed-prometheus/issues).
 
