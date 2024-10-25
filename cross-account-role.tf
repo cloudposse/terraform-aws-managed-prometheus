@@ -50,7 +50,7 @@ data "aws_iam_policy_document" "aps" {
       "aps:GetSeries",
       "aps:GetMetricMetadata"
     ]
-    resources = ["*"]
+    resources = [aws_prometheus_workspace.this[0].arn]
   }
 }
 
