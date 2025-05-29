@@ -15,9 +15,6 @@ github_repo: cloudposse/terraform-aws-managed-prometheus
 
 # Badges to display
 badges:
-  - name: Last Updated
-    image: https://img.shields.io/github/last-commit/cloudposse/terraform-aws-managed-prometheus.svg?style=for-the-badge
-    url: https://github.com/cloudposse/terraform-aws-managed-prometheus/commits
   - name: Latest Release
     image: https://img.shields.io/github/release/cloudposse/terraform-aws-managed-prometheus.svg?style=for-the-badge
     url: https://github.com/cloudposse/terraform-aws-managed-prometheus/releases/latest
@@ -26,7 +23,7 @@ badges:
     url: https://github.com/cloudposse/terraform-aws-managed-prometheus/commits
   - name: Slack Community
     image: https://slack.cloudposse.com/for-the-badge.svg
-    url: https://slack.cloudposse.com
+    url: https://cloudposse.com/slack
 
 # List any related terraform modules that this module may be used with or that this module depends on.
 related:
@@ -101,8 +98,5 @@ examples: |-
   - [`examples/complete`](https://github.com/cloudposse/terraform-aws-managed-prometheus/) - complete example of using this module
 
 # Other files to include in this README from the project folder
-include:
-  - "docs/targets.md"
-  - "docs/terraform.md"
-
+include: []
 contributors: []
