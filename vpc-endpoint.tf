@@ -40,7 +40,7 @@ resource "aws_vpc_endpoint" "prometheus" {
   count = local.vpc_endpoint_enabled ? 1 : 0
 
   vpc_id            = var.vpc_id
-  service_name      = format("com.amazonaws.%s.aps-workspaces", data.aws_region.current.name)
+  service_name      = format("com.amazonaws.%s.aps-workspaces", data.aws_region.current.id)
   vpc_endpoint_type = "Interface"
 
   policy = module.vpc_endpoint_policy.json
