@@ -8,7 +8,7 @@ module "vpc_endpoint_policy" {
   source  = "cloudposse/iam-policy/aws"
   version = "2.0.1"
 
-  enabled = local.vpc_endpoint_enabled
+  count = local.vpc_endpoint_enabled ? 1 : 0
 
   iam_policy = [{
     statements = [
@@ -43,7 +43,7 @@ resource "aws_vpc_endpoint" "prometheus" {
   service_name      = format("com.amazonaws.%s.aps-workspaces", data.aws_region.current.id)
   vpc_endpoint_type = "Interface"
 
-  policy = module.vpc_endpoint_policy.json
+  policy = try(module.vpc_endpoint_policy[0].json, "")
 
   tags = module.this.tags
 }
