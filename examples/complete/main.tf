@@ -10,7 +10,7 @@ module "managed_prometheus" {
 
   allowed_account_id = data.aws_caller_identity.current.account_id
   scraper_deployed   = true
-  vpc_id             = data.aws_vpc.default[0].id
+  vpc_id             = try(data.aws_vpc.default[0].id, "")
 
   context = module.this.context
 }
