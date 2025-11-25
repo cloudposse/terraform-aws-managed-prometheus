@@ -10,10 +10,10 @@ module "vpc" {
 module "managed_prometheus" {
   source = "../.."
 
-  allowed_account_id    = data.aws_caller_identity.current.account_id
-  scraper_deployed      = true
-  vpc_endpoint_enabled  = true
-  vpc_id                = module.vpc.vpc_id
+  allowed_account_id   = data.aws_caller_identity.current.account_id
+  scraper_deployed     = true
+  vpc_endpoint_enabled = true
+  vpc_id               = module.vpc.vpc_id
 
   context = module.this.context
 }
