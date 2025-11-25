@@ -3,7 +3,9 @@ locals {
   vpc_endpoint_enabled = local.enabled && var.vpc_endpoint_enabled
 }
 
-data "aws_region" "current" {}
+data "aws_region" "current" {
+  count = local.vpc_endpoint_enabled ? 1 : 0
+}
 
 data "aws_iam_policy_document" "vpc_endpoint_policy" {
   count = local.vpc_endpoint_enabled ? 1 : 0
@@ -28,10 +30,10 @@ resource "aws_vpc_endpoint" "prometheus" {
   count = local.vpc_endpoint_enabled ? 1 : 0
 
   vpc_id            = var.vpc_id
-  service_name      = format("com.amazonaws.%s.aps-workspaces", data.aws_region.current.region)
+  service_name      = format("com.amazonaws.%s.aps-workspaces", one(data.aws_region.current[*].region))
   vpc_endpoint_type = "Interface"
 
-  policy = data.aws_iam_policy_document.vpc_endpoint_policy[0].json
+  policy = one(data.aws_iam_policy_document.vpc_endpoint_policy[*].json)
 
   tags = module.this.tags
 }
