@@ -35,8 +35,8 @@ resource "aws_iam_role_policy" "account_access" {
   count = local.access_role_enabled ? 1 : 0
 
   name   = module.account_access_policy_label.id
-  role   = aws_iam_role.account_access[0].id
-  policy = data.aws_iam_policy_document.aps[0].json
+  role   = one(aws_iam_role.account_access[*].id)
+  policy = one(data.aws_iam_policy_document.aps[*].json)
 }
 
 # See "Amazon Managed Service for Prometheus"
