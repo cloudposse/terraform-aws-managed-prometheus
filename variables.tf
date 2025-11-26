@@ -25,8 +25,14 @@ variable "allowed_account_id" {
   default     = ""
 }
 
+variable "vpc_endpoint_enabled" {
+  type        = bool
+  description = "Set to true to create a VPC endpoint for Amazon Managed Prometheus. Requires vpc_id to be set."
+  default     = false
+}
+
 variable "vpc_id" {
   type        = string
-  description = "If set, the ID of the VPC in which the endpoint will be used. If not set, no VPC endpoint will be created."
+  description = "If `var.vpc_endpoint_enabled` is true, the ID of the VPC in which the endpoint will be used."
   default     = ""
 }

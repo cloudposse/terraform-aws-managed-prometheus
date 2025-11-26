@@ -14,7 +14,7 @@ resource "aws_prometheus_alert_manager_definition" "this" {
 }
 
 resource "aws_prometheus_rule_group_namespace" "this" {
-  for_each = local.enabled ? toset(var.rule_group_namespaces) : []
+  for_each = local.enabled ? { for idx, namespace in var.rule_group_namespaces : namespace.name => namespace } : {}
 
   name = each.value.name
   data = each.value.data
