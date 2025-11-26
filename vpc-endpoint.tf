@@ -6,7 +6,7 @@ data "aws_region" "current" {}
 
 module "vpc_endpoint_policy" {
   source  = "cloudposse/iam-policy/aws"
-  version = "2.0.1"
+  version = "2.0.2"
 
   enabled = local.vpc_endpoint_enabled
 
