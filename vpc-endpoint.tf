@@ -1,49 +1,39 @@
 locals {
-  vpc_endpoint_enabled = local.enabled && length(var.vpc_id) > 0
+  # Deploy the VPC endpoint if explicitly enabled
+  vpc_endpoint_enabled = local.enabled && var.vpc_endpoint_enabled
 }
 
-data "aws_region" "current" {}
+data "aws_region" "current" {
+  count = local.vpc_endpoint_enabled ? 1 : 0
+}
 
-module "vpc_endpoint_policy" {
-  source  = "cloudposse/iam-policy/aws"
-  version = "2.0.1"
+data "aws_iam_policy_document" "vpc_endpoint_policy" {
+  count = local.vpc_endpoint_enabled ? 1 : 0
 
-  enabled = local.vpc_endpoint_enabled
-
-  iam_policy = [{
-    statements = [
-      {
-        effect    = "Allow"
-        actions   = ["aps:*"]
-        resources = ["*"]
-        principals = [
-          {
-            type        = "AWS"
-            identifiers = ["*"]
-          }
-        ]
-        conditions = [
-          {
-            test     = "StringEquals"
-            variable = "aws:SourceVpc"
-            values   = [var.vpc_id]
-          }
-        ]
-      }
-    ]
-  }]
-
-  context = module.this.context
+  statement {
+    effect    = "Allow"
+    actions   = ["aps:*"]
+    resources = ["*"]
+    principals {
+      type        = "AWS"
+      identifiers = ["*"]
+    }
+    condition {
+      test     = "StringEquals"
+      variable = "aws:SourceVpc"
+      values   = [var.vpc_id]
+    }
+  }
 }
 
 resource "aws_vpc_endpoint" "prometheus" {
   count = local.vpc_endpoint_enabled ? 1 : 0
 
   vpc_id            = var.vpc_id
-  service_name      = format("com.amazonaws.%s.aps-workspaces", data.aws_region.current.name)
+  service_name      = format("com.amazonaws.%s.aps-workspaces", one(data.aws_region.current[*].id))
   vpc_endpoint_type = "Interface"
 
-  policy = module.vpc_endpoint_policy.json
+  policy = one(data.aws_iam_policy_document.vpc_endpoint_policy[*].json)
 
   tags = module.this.tags
 }
